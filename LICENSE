@@ -1,6 +1,11 @@
-MIT License
+MIT License with Additional Commons Clauses – Version 1.0
+==========================================================
 
 Copyright (c) 2025 Mogduz
+
+This Software is licensed under the MIT License modified by the additional restrictions set forth 
+in the Commons Clauses below. By using, copying, or distributing the Software, you agree to the terms 
+of both the MIT License and these additional clauses.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +24,55 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---------------------------------------------------------------
+Additional Commons Clauses – Detailed Descriptions
+---------------------------------------------------------------
+
+1. No Commercial Use
+   ------------------
+   a. Definition: "Commercial Use" is defined as any use of the Software, in whole or in part, that is 
+      primarily intended for or directed toward commercial advantage or monetary compensation. This 
+      includes, but is not limited to, usage by private individuals, companies, associations, government 
+      agencies, or any other entities in any commercial context.
+   
+   b. Restriction: Under this clause, you are strictly prohibited from using, sublicensing, selling, leasing, 
+      or otherwise providing the Software for any commercial purpose. This restriction applies to the 
+      Software itself as provided and to any distribution or use from which a substantial economic advantage 
+      is derived.
+      
+   c. Scope: Even if the commercial use is incidental or part of a broader, non-commercial activity, any use 
+      intended for commercial benefit or monetary gain is disallowed.
+
+2. Attribution Requirement
+   -------------------------
+   a. Obligation: Any use, distribution, or publication of the Software, in whole or in part, must include clear 
+      and prominent attribution to the original author, "[COPYRIGHT HOLDER]".
+      
+   b. Format: The attribution must be provided in a manner that is reasonably prominent relative to the medium and 
+      the method of distribution. For example, if integrated into a user interface or documentation, the attribution 
+      must be visible to end users.
+      
+   c. Inclusions: The attribution must at a minimum include the name of the original author and a reference to this license. 
+      No alteration or removal of the attribution is permitted when redistributing the Software.
+
+3. Prohibition of Re-licensing
+   -----------------------------
+   a. Principle: Any use, modification, alteration, or creation of derivative works of the Software shall be subject 
+      to the conditions of this License. The Software, in its original or modified form, must not be redistributed 
+      or made available under any licensing terms different from those set forth herein.
+   
+   b. No License Amendment: Even if you modify or extend the source code, the Software (including all derivative works) 
+      shall remain licensed solely under the terms of this License. You are expressly prohibited from re-licensing the 
+      Software, in whole or in part, under any alternative licensing scheme.
+   
+   c. Enforcement: Any attempt to offer or distribute the Software under licensing terms that differ from those defined 
+      herein shall constitute a breach of this License and be rendered null and void.
+
+---------------------------------------------------------------
+
+By using, copying, or distributing the Software, you confirm that you have read, understood, and agree to be bound by 
+the combined terms of the MIT License and the additional Commons Clauses detailed above.
+
+[END OF LICENSE]
+
