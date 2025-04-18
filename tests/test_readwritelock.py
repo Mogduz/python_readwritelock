@@ -19,7 +19,7 @@ import unittest
 import threading
 import time
 
-from readwritelock_old import ReadWriteLock
+from readwritelock import ReadWriteLock
 
 
 class TestReadWriteLock(unittest.TestCase):
