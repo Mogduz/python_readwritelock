@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "readwritelock"
+version = "0.1.0"
+description = "Ein einfacher Reader-Writer-Lock für Python-Threads"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name="Modguz" }]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+requires-python = ">=3.7"
