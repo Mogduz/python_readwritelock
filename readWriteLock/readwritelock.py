@@ -93,7 +93,7 @@ class ReadWriteLock:
             while self._readers > 0:
                 self._condition.wait()
         except Exception:
-            # Ensure lock is released on exception
+            # Ensure lock is released on exception!
             self._condition.release()
             raise
 
