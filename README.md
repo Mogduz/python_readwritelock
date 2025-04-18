@@ -1,115 +1,122 @@
-# python_readwritelock
+# ReadWriteLock
 
-A simple Reader-Writer lock for Python threads.
+A simple **Reader-Writer Lock** implementation for Python threads, enabling multiple concurrent readers or a single exclusive writer.
 
 ## Table of Contents
-
 - [Overview](#overview)
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
   - [Basic Usage](#basic-usage)
-  - [Context Managers](#context-managers)
-- [API](#api)
+  - [Direct Methods](#direct-methods)
+- [API Reference](#api-reference)
 - [Thread Safety Details](#thread-safety-details)
+- [Performance](#performance)
 - [Project Structure](#project-structure)
-- [Tests](#tests)
-- [Development & Contribution](#development--contribution)
+- [Running Tests](#running-tests)
+- [Contributing](#contributing)
 - [License](#license)
 - [Authors](#authors)
 
 ## Overview
+The `ReadWriteLock` class provides a synchronization primitive that allows:
+- **Multiple concurrent readers**: Threads can acquire the lock for reading simultaneously.
+- **Single exclusive writer**: Only one writer can hold the lock at a time, and no readers can hold it during writing.
 
-This repository provides the `ReadWriteLock` class, which allows multiple concurrent read accesses or a single exclusive write access in Python threads. Internally, it uses a `threading.Condition` to synchronize readers and writers without starvation.
+This pattern helps optimize performance in scenarios with frequent read operations and infrequent writes.
 
 ## Features
-
-- Multiple concurrent readers
+- Multiple simultaneous readers
 - Single exclusive writer
-- Convenient context manager support
-- Fairness: writers wait until all readers have finished
-- Compatible with Python ≥ 3.7
+- Context manager support (`with` statement)
+- Fairness: writers wait until all active readers release the lock
+- Compatible with Python ≥ 3.7
 
 ## Installation
+Clone the repository and install via pip:
 
 ```bash
 git clone https://github.com/Mogduz/python_readwritelock.git
 cd python_readwritelock
 pip install .
-# Or directly:
+```
+
+Or install directly from GitHub:
+
+```bash
 pip install git+https://github.com/Mogduz/python_readwritelock.git
+```
+
+Alternatively, if published on PyPI:
+
+```bash
+pip install readwritelock
 ```
 
 ## Usage
 
 ### Basic Usage
-
 ```python
 from readwritelock import ReadWriteLock
 
 lock = ReadWriteLock()
 
-# Reader access
+# Shared read
 with lock.read_lock():
-    # critical read section
-    pass
+    # perform thread-safe read operations
+    data = shared_resource.read()
 
-# Writer access
+# Exclusive write
 with lock.write_lock():
-    # critical write section
-    pass
+    # perform thread-safe write operations
+    shared_resource.update(new_value)
 ```
 
-### Context Managers
-
-Alternatively, use the methods directly:
-
+### Direct Methods
 ```python
 lock.acquire_read()
 try:
     # read section
-    pass
+    ...
 finally:
     lock.release_read()
-```
 
-```python
 lock.acquire_write()
 try:
     # write section
-    pass
+    ...
 finally:
     lock.release_write()
 ```
 
-## API
+## API Reference
 
 ### Class `ReadWriteLock`
-
 #### Constructor
-
-- `__init__()`: Initializes the internal `Condition` and reader counter.
+- `__init__()`: Initialize internal condition and reader counter.
 
 #### Methods
-
-- `acquire_read()`: Acquires a shared read lock (increments counter).
-- `release_read()`: Releases the shared read lock (decrements counter and notifies writers).
-- `acquire_write()`: Acquires an exclusive write lock (blocks until no readers are active).
-- `release_write()`: Releases the write lock.
+- `acquire_read()`: Acquire a shared read lock (increments reader count).
+- `release_read()`: Release the shared read lock (decrements reader count; notifies writers when zero).
+- `acquire_write()`: Acquire an exclusive write lock (blocks until no readers are active).
+- `release_write()`: Release the exclusive write lock.
 
 #### Context Managers
-
 - `read_lock()`: Context manager for read access.
 - `write_lock()`: Context manager for write access.
 
 ## Thread Safety Details
+- Built on `threading.Condition` with an internal mutex.
+- Reader count tracks active readers.
+- Writers block while the reader count > 0.
+- `notify_all()` is used to wake waiting writers when the last reader releases.
 
-- Uses `threading.Condition` with an internal `Lock`.
-- Readers increment/decrement a counter; writers block while the counter > 0.
-- `notify_all()` signals waiting writers after the last reader releases.
+## Performance
+Benchmark tests using `pytest-benchmark` are provided in the `tests/` folder to measure:
+- `acquire_read()` / `release_read()` performance.
+- `acquire_write()` / `release_write()` performance.
 
 ## Project Structure
-
 ```
 python_readwritelock/
 ├── readwritelock/
@@ -120,37 +127,31 @@ python_readwritelock/
 ├── conftest.py
 ├── pyproject.toml
 ├── requirements.txt
+├── run_tests.sh
 └── LICENSE
 ```
 
-## Tests
-
-The test suite is based on `pytest` with the following plugins:
-
-- `pytest-cov` (coverage measurement)
-- `pytest-mock` (mocking/patching)
-- `pytest-xdist` (parallel testing)
-- `pytest-asyncio` (async tests)
-- `pytest-benchmark` (performance benchmarks)
-- `pytest-html` (HTML report)
-
-Run tests with:
+## Running Tests
+Ensure test dependencies are installed (see `requirements.txt`), then run:
 
 ```bash
 pytest
 ```
 
-Reports are generated in the `reports/` directory by default.
+HTML reports will be generated under the `reports/` directory.
 
-## Development & Contribution
+## Contributing
+Contributions are welcome! Please follow these steps:
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/foo`).
+3. Commit your changes (`git commit -m 'Add feature'`).
+4. Push to the branch (`git push origin feature/foo`).
+5. Open a Pull Request.
 
-Contributions are welcome! Please open an issue for bug reports or feature requests and submit pull requests. Make sure all tests pass.
+Ensure all tests pass before submitting.
 
 ## License
-
-This project is licensed under the MIT License – see [LICENSE](LICENSE) for details.
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
 
 ## Authors
-
-- Mogduz  
-- Initial release: April 18, 2025
+- **Mogduz** — initial author and maintainer
