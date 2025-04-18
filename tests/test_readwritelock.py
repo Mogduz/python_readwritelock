@@ -19,7 +19,7 @@ import unittest
 import threading
 import time
 
-from readwritelock import ReadWriteLock
+from readwritelock.readwritelock import ReadWriteLock
 
 
 class TestReadWriteLock(unittest.TestCase):
@@ -67,7 +67,7 @@ class TestReadWriteLock(unittest.TestCase):
              - release_write() unlocks.
           4. Re-acquire write_lock() to ensure lock released properly.
         """
-        lock = readWriteLock.ReadWriteLock()
+        lock = ReadWriteLock()
         with lock.write_lock():
             self.assertEqual(lock._readers, 0)
         with lock.write_lock():
