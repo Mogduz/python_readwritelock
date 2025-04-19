@@ -4,17 +4,27 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "readwritelock"
-version = "0.1.0"
+version = "1.0.0"
 description = "Ein einfacher Reader-Writer-Lock für Python-Threads"
 readme = "README.md"
 license = { file = "LICENSE" }
-authors = [{ name="Modguz" }]
+authors = [
+  { name="Modguz" }
+]
 classifiers = [
   "Programming Language :: Python :: 3",
   "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
 ]
-requires-python = ">=3.7"
+requires-python = ">=3.10"
+
+[tool.setuptools]
+# Optionale Einstellungen, z.B. wo die Quellcode‑Ordner liegen
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["readwritelock*"]         # findet dein Paket unter readwritelock/
 
 [tool.pytest.ini_options]
 # AsyncIO‑Plugin: strikte Loop‑Policy und function‑Scope für async Fixtures
